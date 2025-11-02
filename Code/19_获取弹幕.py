@@ -14,7 +14,7 @@ cookies = {
 def get_danmaku(aid_df):
 
     if not os.path.exists(f"List/danmaku.csv"):
-        with open(f"List/danmaku.csv", mode='w', newline='',encoding='utf-8') as file:
+        with open(f"List/danmaku.csv", mode='w', newline='',encoding='utf-8-sig') as file:
             writer = csv.writer(file)
             writer.writerow(['aid', 'cid','danmaku'])  # 写入表头
 
@@ -36,7 +36,7 @@ def get_danmaku(aid_df):
             response = requests.get(url, params=params, headers=headers,cookies=cookies)
             response.encoding = 'utf-8'
             pbar.update(1)
-            with open(f"List/danmaku.csv", mode='a', newline='',encoding='utf-8') as file:
+            with open(f"List/danmaku.csv", mode='a', newline='',encoding='utf-8-sig') as file:
                 writer = csv.writer(file)
                 writer.writerow([aid,cid,response.text])
             time.sleep(3)

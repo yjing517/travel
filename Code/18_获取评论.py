@@ -14,7 +14,7 @@ cookies = {
 def get_reply(aid_df):
 
     if not os.path.exists(f"List/reply.csv"):
-        with open(f"List/reply.csv", mode='w', newline='',encoding='utf-8') as file:
+        with open(f"List/reply.csv", mode='w', newline='',encoding='utf-8-sig') as file:
             writer = csv.writer(file)
             writer.writerow(['aid', 'reply'])  # 写入表头
 
@@ -67,7 +67,7 @@ def get_reply(aid_df):
                                     }
                         reply_list.append([aid,data_dict])
                 pbar.update(1)
-                with open(f"List/reply.csv", mode='a', newline='',encoding='utf-8') as file:
+                with open(f"List/reply.csv", mode='a', newline='',encoding='utf-8-sig') as file:
                     writer = csv.writer(file)
                     writer.writerows(reply_list)
                 time.sleep(5)

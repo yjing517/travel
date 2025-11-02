@@ -162,11 +162,11 @@ if __name__ == '__main__':
 
         # 每爬取100行保存一次
         if count % 1000 == 0:
-            aid_df.to_csv(file_name, encoding='utf-8', index=False)
+            aid_df.to_csv(file_name, encoding='utf-8-sig', index=False)  # 修改编码为 utf-8-sig
             print(f"已保存前 {count} 行数据")
 
     # 保存最后的数据
-    aid_df.to_csv(file_name, encoding='utf-8', index=False)
+    aid_df.to_csv(file_name, encoding='utf-8-sig', index=False)  # 修改编码为 utf-8-sig
 
     pbar.close()
     print('完成视频信息爬取')

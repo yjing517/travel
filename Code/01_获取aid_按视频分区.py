@@ -22,7 +22,7 @@ def get_id_list(file_name=f"../List/aid_list_new_craw.csv",rid=0,num=10,max_dura
         # 读取已经爬取的aid号
         file_name = file_name
         if os.path.exists(file_name):
-            aid_df = pd.read_csv(file_name)
+            aid_df = pd.read_csv(file_name, encoding='utf-8-sig')  # 确保读取时使用 utf-8-sig
         else:
             aid_df = pd.DataFrame(columns=['aid'])
         aid_list = aid_df['aid'].values
@@ -85,7 +85,7 @@ def get_id_list(file_name=f"../List/aid_list_new_craw.csv",rid=0,num=10,max_dura
         pbar.update(1)
 
         # 保存id信息
-        aid_df.to_csv(file_name, encoding='utf-8', index=False)
+        aid_df.to_csv(file_name, encoding='utf-8-sig', index=False)  # 确保保存时使用 utf-8-sig
         time.sleep(1)
         clean_aid_df(file_name)
 
@@ -96,14 +96,14 @@ def get_id_list(file_name=f"../List/aid_list_new_craw.csv",rid=0,num=10,max_dura
 def clean_aid_df(file_name):
 
     file_name = file_name
-    aid_df = pd.read_csv(file_name)
+    aid_df = pd.read_csv(file_name, encoding='utf-8-sig')  # 确保读取时使用 utf-8-sig
     # print(aid_df.shape)
 
     aid_df = aid_df.dropna(subset=['aid爬取时间'])
     aid_df.drop_duplicates(subset=['aid'], inplace=True)  # 去除第一列的重复项
 
     # print(aid_df.shape)
-    aid_df.to_csv(file_name, encoding='utf-8', index=False)
+    aid_df.to_csv(file_name, encoding='utf-8-sig', index=False)  # 确保保存时使用 utf-8-sig
 
 if __name__ == '__main__':
 
